@@ -295,7 +295,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<br><br>
 				</div>
 				<div class="forg">
-					<a href="Seller-Forget-Password" class="forg-left">Forgot Password</a>
+					<a href="Seller-Forgot-Password.jsp" class="forg-left">Forgot Password</a>
 					<a href="Seller-Registration.jsp" class="forg-right">Register</a>
 				<div class="clearfix"></div>
 				</div>

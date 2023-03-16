@@ -143,7 +143,7 @@ public class SellerController extends HttpServlet {
 			} else {
 				request.setAttribute("msg", "New Password and Confirm Password Doesn't Matched.");
 				request.setAttribute("Email", Email);
-				request.getRequestDispatcher("Seller-Verify-OTP.jsp").forward(request, response);
+				request.getRequestDispatcher("Seller-New-Password.jsp").forward(request, response);
 			}
 		}
 	}

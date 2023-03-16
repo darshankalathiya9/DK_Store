@@ -101,8 +101,6 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						
-
 					</div> 
 					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 						<ul class="nav navbar-nav ">
@@ -115,7 +113,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 										<div class="col-sm-12">
 											<ul class="multi-column-dropdown">
 			
-												<li><a href="Seller-Update-Profile.jsp"><i class="fa fa-angle-right" aria-hidden="true"></i>Update Profile</a></li>
+												<li><a href="Seller-Profile.jsp"><i class="fa fa-angle-right" aria-hidden="true"></i>Update Profile</a></li>
 												<li><a href="Seller-Change-Password.jsp"><i class="fa fa-angle-right" aria-hidden="true"></i>Change Password</a></li>
 											</ul>
 										</div>
@@ -129,8 +127,8 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 									<div class="row">
 										<div class="col-sm-12">
 											<ul class="multi-column-dropdown">
-												<li><a href="Seller-Upload-Products.jsp"><i class="fa fa-angle-right" aria-hidden="true"></i>Upload Products</a></li>
-												<li><a href="Seller-Manage-Prodcuts.jsp"><i class="fa fa-angle-right" aria-hidden="true"></i>Manage Products</a></li>
+												<li><a href="Seller-Upload-Product.jsp"><i class="fa fa-angle-right" aria-hidden="true"></i>Upload Products</a></li>
+												<li><a href="Seller-Manage-Product.jsp"><i class="fa fa-angle-right" aria-hidden="true"></i>Manage Products</a></li>
 											</ul>
 										</div>
 										<div class="clearfix"></div>
@@ -166,11 +164,11 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 							</li>
 							<li><a href="contact.html" class="hyper"><span>Contact Us</span></a></li>
 							<li><a href="#" class="hyper"><span> Hello <%=s.getUsername() %></span></a></li>
+							<li><a href="Seller-Logout.jsp" class="hyper"><span> Logout</span></a></li>
 						</ul>
 					</div>
 					</nav>
 					 <div class="cart" >
-					
 						<span class="fa fa-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></span>
 					</div>
 					<div class="clearfix"></div>

@@ -56,7 +56,7 @@ public class SellerDao {
 	public static void updateProfile(Seller s) {
 		try {
 			Connection conn = DBConnection.createConnection();
-			String sql = "update seller set Name=?, Contact=?, City=?, Email=? where ID=?";
+			String sql = "update seller set Username=?, Contact=?, City=?, Email=? where ID=?";
 			PreparedStatement pst = conn.prepareStatement(sql);
 
 			pst.setString(1, s.getUsername());
