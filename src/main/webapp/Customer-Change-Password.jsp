@@ -183,19 +183,22 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				
 					<form action="CustomerController" method="post">
 						<input type="hidden" value="<%=c.getID() %>" name="ID">
+						<label>Old Password</label>
 						<div class="key">
 							<i class="fa fa-lock" aria-hidden="true"></i>
-							<input type="password" name="OP" placeholder="Old Password" required="">
+							<input  type="password" value="Old-Password" name="OP" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Old-Password';}" required="">
 							<div class="clearfix"></div>
 						</div>
+						<label>New Password</label>
 						<div class="key">
 							<i class="fa fa-lock" aria-hidden="true"></i>
-							<input type="password" name="NP" placeholder="New Password" required="">
+							<input  type="password" value="New-Password" name="NP" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'New-Password';}" required="">
 							<div class="clearfix"></div>
 						</div>
+						<label>Confirm New Password</label>
 						<div class="key">
 							<i class="fa fa-lock" aria-hidden="true"></i>
-							<input type="password" name="CNP" placeholder="Confirm New  Password" required="">
+							<input  type="password" value="Confirm-New-Password" name="CNP" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Confirm-New-Password';}" required="">
 							<div class="clearfix"></div>
 						</div>
 						<div class="text-center">

@@ -41,7 +41,7 @@ public class ProductDao {
 			pst.setInt(1, SID);
 			ResultSet rs = pst.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				Product p = new Product();
 				p.setPID(rs.getInt("PID"));
 				p.setSID(rs.getInt("SID"));

@@ -165,6 +165,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 								</ul>
 							</li>
 							<li><a href="contact.html" class="hyper"><span>Contact Us</span></a></li>
+							<li><a href="#" class="hyper"><span> Hello <%=s.getUsername() %></span></a></li>
 							<li><a href="Seller-Logout.jsp" class="hyper"><span> Logout</span></a></li>
 						</ul>
 					</div>
@@ -207,16 +208,19 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				
 					<form action="SellerController" method="post">
 						<input type="hidden" value="<%=s.getID() %>" name="ID">
+						<label>Old Password</label>
 						<div class="key">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 							<input  type="password" value="Old-Password" name="OP" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Old-Password';}" required="">
 							<div class="clearfix"></div>
 						</div>
+						<label>New Password</label>
 						<div class="key">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 							<input  type="password" value="New-Password" name="NP" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'New-Password';}" required="">
 							<div class="clearfix"></div>
 						</div>
+						<label>Confirm New Password</label>
 						<div class="key">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 							<input  type="password" value="Confirm-New-Password" name="CNP" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Confirm-New-Password';}" required="">

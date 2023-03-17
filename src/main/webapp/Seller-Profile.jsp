@@ -165,6 +165,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 								</ul>
 							</li>
 							<li><a href="contact.html" class="hyper"><span>Contact Us</span></a></li>
+							<li><a href="#" class="hyper"><span> Hello <%=s.getUsername() %></span></a></li>
 							<li><a href="Seller-Logout.jsp" class="hyper"><span> Logout</span></a></li>
 						</ul>
 					</div>

@@ -281,11 +281,13 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<form action="SellerController" method="post">
 					
 						<input type="hidden" name="Email" value="<%=Email %>">
+						<label>New Password</label>
 						<div class="key">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 							<input  type="password" value="New-Password" name="NP" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'New-Password';}" required="">
 							<div class="clearfix"></div>
 						</div>
+						<label>Confirm New Password</label>
 						<div class="key">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 							<input  type="password" value="Confirm-New-Password" name="CNP" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Conform-New-Password';}" required="">

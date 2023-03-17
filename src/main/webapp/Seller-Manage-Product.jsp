@@ -109,7 +109,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 						<ul class="nav navbar-nav ">
 							<li><a href="Index.jsp" class="hyper "><span>Home</span></a></li>	
 							
-							<li class="dropdown active">
+							<li class="dropdown ">
 								<a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown" ><span>Profile<b class="caret"></b></span></a>
 								<ul class="dropdown-menu multi">
 									<div class="row">
@@ -124,7 +124,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 									</div>	
 								</ul>
 							</li>
-							<li class="dropdown">
+							<li class="dropdown active">
 								<a href="#" class="dropdown-toggle hyper" data-toggle="dropdown" ><span> Products <b class="caret"></b></span></a>
 								<ul class="dropdown-menu multi multi1">
 									<div class="row">
@@ -166,6 +166,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 								</ul>
 							</li>
 							<li><a href="contact.html" class="hyper"><span>Contact Us</span></a></li>
+							<li><a href="#" class="hyper"><span> Hello <%=s.getUsername() %></span></a></li>
 							<li><a href="Seller-Logout.jsp" class="hyper"><span> Logout</span></a></li>
 						</ul>
 					</div>
