@@ -57,4 +57,57 @@ public class ProductDao {
 		}
 		return list;
 	}
+
+	public static List<Product> getAllProduct() {
+		List<Product> list = new ArrayList<Product>();
+		try {
+			Connection conn = DBConnection.createConnection();
+			String sql = "select * from product";
+			PreparedStatement pst = conn.prepareStatement(sql);
+
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+				Product p = new Product();
+				p.setPID(rs.getInt("PID"));
+				p.setSID(rs.getInt("SID"));
+				p.setImage(rs.getString("Image"));
+				p.setPName(rs.getString("PName"));
+				p.setPPrice(rs.getInt("PPrice"));
+				p.setPCategory(rs.getString("PCategory"));
+				p.setPDesc(rs.getString("PDesc"));
+				list.add(p);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public static Product getProductByPID(int ID) {
+		Product p = null;
+		try {
+			Connection conn = DBConnection.createConnection();
+			String sql = "select * from product where PID=?";
+			PreparedStatement pst = conn.prepareStatement(sql);
+
+			pst.setInt(1, ID);
+			ResultSet rs = pst.executeQuery();
+
+			if (rs.next()) {
+				p = new Product();
+				p.setPID(rs.getInt("PID"));
+				p.setSID(rs.getInt("SID"));
+				p.setImage(rs.getString("Image"));
+				p.setPName(rs.getString("PName"));
+				p.setPPrice(rs.getInt("PPrice"));
+				p.setPCategory(rs.getString("PCategory"));
+				p.setPDesc(rs.getString("PDesc"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return p;
+	}
+
 }
