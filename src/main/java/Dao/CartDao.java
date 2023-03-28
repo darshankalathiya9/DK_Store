@@ -13,9 +13,16 @@ public class CartDao {
 	public static void InsertCart(Cart c) {
 		try {
 			Connection conn = DBConnection.createConnection();
-			String sql = "insert into cart () values ()";
+			String sql = "insert into cart (CustomerID, PID, PName, PPrice, PQuantity, Payment_Status) values (?,?,?,?,?,?)";
 			PreparedStatement pst = conn.prepareStatement(sql);
 
+			pst.setInt(1, c.getCustomerID());
+			pst.setInt(2, c.getPID());
+			pst.setString(3, c.getPName());
+			pst.setInt(4, c.getPPrice());
+			pst.setInt(5, c.getPQuantity());
+			pst.setString(6, c.getPayment_Status());
+			
 			pst.executeUpdate();
 			System.out.println("Product add into Cart Succesfully.");
 		} catch (Exception e) {

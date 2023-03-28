@@ -94,19 +94,25 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 			<div class="logo">
 				<h1>
-					<a href="Index.jsp"><b>T<br>H<br>E
+					<a href="Customer-Home.jsp"><b>T<br>H<br>E
 					</b>DK Store<span>The Best Supermarket</span></a>
 				</h1>
 			</div>
 			<div class="head-t">
 				<ul class="card">
 
-					<li><a href="Wishlist.jsp"><i class="fa fa-heart"
-							aria-hidden="true"></i>Wishlist</a></li>
-					<li><a href="Customer-Login.jsp"><i class="fa fa-user"
-							aria-hidden="true"></i>Login</a></li>
-					<li><a href="Customer-Registration.jsp"><i
-							class="fa fa-arrow-right" aria-hidden="true"></i>Register</a></li>
+					<%
+					List<Wishlist> list2 = WishlistDao.getwishlistByCustomerID(c.getID());
+					%>
+					<li><a href="Customer-Wishlist.jsp"><i class="fa fa-heart"
+							aria-hidden="true"></i>Wishlist(<%=list2.size()%>)</a></li>
+					
+					<%
+					List<Cart> list1 = CartDao.getCartByCustomerID(c.getID());
+					%>
+					<li><a href="Customer-Cart.jsp"><i class="fa fa-heart"
+							aria-hidden="true"></i>Cart(<%=list1.size()%>)</a></li>
+							
 					<li><a href="about.html"><i class="fa fa-file-text-o"
 							aria-hidden="true"></i>Order History</a></li>
 					<li><a href="shipping.html"><i class="fa fa-ship"
@@ -128,7 +134,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					</div>
 					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 						<ul class="nav navbar-nav ">
-							<li class=" active"><a href="Index.jsp" class="hyper "><span>Home</span></a></li>
+							<li class=" active"><a href="Customer-Home.jsp" class="hyper "><span>Home</span></a></li>
 
 							<li class="dropdown "><a href="#"
 								class="dropdown-toggle  hyper" data-toggle="dropdown"><span>Profile<b
@@ -152,7 +158,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 							<li class="dropdown"><a href="#"
 								class="dropdown-toggle hyper" data-toggle="dropdown"><span>Notifications<b
 										class="caret"></b></span></a>
-								<ul class="dropdown-menu multi multi2">
+								<ul class="dropdown-menu multi">
 									<div class="row">
 										<div class="col-sm-12">
 											<ul class="multi-column-dropdown">
@@ -164,25 +170,22 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 														aria-hidden="true"></i>Others</a></li>
 											</ul>
 										</div>
+										<div class="clearfix"></div>
 									</div>
+								</ul></li>
 								</ul></li>
 							<li><a href="#" class="hyper"><span> Gift Cards</span></a></li>
 							<li><a href="#" class="hyper"><span> Coins</span></a></li>
 							<li><a href="contact.html" class="hyper"><span>Contact
 										Us</span></a></li>
-							<li><a href="#" class="hyper"><span> Hello <%=c.getUsername() %></span></a></li>
+							<li><a href="#" class="hyper"><span> Hello <%=c.getUsername()%></span></a></li>
 							<li><a href="Customer-Logout.jsp" class="hyper"><span>
 										Logout</span></a></li>
 						</ul>
 					</div>
 				</nav>
-				<div class="cart">
-					<span class="fa fa-shopping-cart my-cart-icon"><span
-						class="badge badge-notify my-cart-badge"></span></span>
-				</div>
 				<div class="clearfix"></div>
 			</div>
-
 		</div>
 	</div>
 	<!---->
@@ -266,15 +269,21 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 						
 						<div class="add add-3">
 						<form action="CartController" method="post">
-						
+							<input type="hidden" name="PID" value=<%=p.getPID() %>>
+							<input type="hidden" name="CustomerID" value=<%=c.getID() %>>
 							<button class="btn btn-danger my-cart-btn my-cart-b" name="action" value="Add to Cart">Add To Cart</button>
 						</form><br>
+						
+						<%boolean flag = WishlistDao.checkProductExist(c.getID(), p.getPID()); %>
+						<%if(flag == false){ %>
 						
 						<form action="WishlistController" method="post">
 							<input type="hidden" name="PID" value=<%=p.getPID() %>>
 							<input type="hidden" name="CustomerID" value=<%=c.getID() %>>
 							<button class="btn btn-danger my-cart-btn my-cart-b" name="action" value="Add to Wishlist">Add To Wishlist</button>
 						</form>
+						<%} %>
+						
 						</div>
 						
 						<div class="clearfix"></div>
@@ -300,12 +309,11 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			<div class="col-md-3 footer-grid ">
 				<h3>Menu</h3>
 				<ul>
-					<li><a href="Index.jsp">Home</a></li>
+					<li><a href="Customer-Home.jsp">Home</a></li>
 					<li><a href="kitchen.html">Kitchen</a></li>
 					<li><a href="care.html">Personal Care</a></li>
 					<li><a href="hold.html">Household</a></li>
 					<li><a href="codes.html">Short Codes</a></li>
-					<li><a href="contact.html">Contact</a></li>
 				</ul>
 			</div>
 			<div class="col-md-3 footer-grid ">
@@ -324,18 +332,17 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				<ul>
 					<li><a href="Customer-Login.jsp">Login</a></li>
 					<li><a href="Customer-Registration.jsp">Register</a></li>
-					<li><a href="wishlist.html">Wishlist</a></li>
+					<li><a href="Customer-Wishlist.jsp">Wishlist</a></li>
 
 				</ul>
 			</div>
 			<div class="clearfix"></div>
 			<div class="footer-bottom">
 				<h2>
-					<a href="Index.jsp"><b>T<br>H<br>E
+					<a href="Customer-Home.jsp"><b>T<br>H<br>E
 					</b>DK Store<span>The Best Supermarket</span></a>
 				</h2>
-				<br>
-				<br>
+				<br> <br>
 				<ul class="social-fo">
 					<li><a href="#" class=" face"><i class="fa fa-facebook"
 							aria-hidden="true"></i></a></li>

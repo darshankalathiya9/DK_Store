@@ -1,3 +1,8 @@
+<%@page import="Dao.CartDao"%>
+<%@page import="Model.Cart"%>
+<%@page import="Dao.WishlistDao"%>
+<%@page import="Model.Wishlist"%>
+<%@page import="java.util.List"%>
 <%@page import="Model.Customer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -74,86 +79,106 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	}
 %>
 <a href="offer.html"><img src="images/download.png" class="img-head" alt=""></a>
-<div class="header">
+	<div class="header">
 
 		<div class="container">
-			
+
 			<div class="logo">
-				<h1 ><a href="Index.jsp"><b>T<br>H<br>E</b>DK Store<span>The Best Supermarket</span></a></h1>
+				<h1>
+					<a href="Customer-Home.jsp"><b>T<br>H<br>E
+					</b>DK Store<span>The Best Supermarket</span></a>
+				</h1>
 			</div>
 			<div class="head-t">
 				<ul class="card">
-					<li><a href="wishlist.html" ><i class="fa fa-heart" aria-hidden="true"></i>Wishlist</a></li>
-					<li><a href="Customer-Login.jsp" ><i class="fa fa-user" aria-hidden="true"></i>Login</a></li>
-					<li><a href="Customer-Registration.jsp" ><i class="fa fa-arrow-right" aria-hidden="true"></i>Register</a></li>
-					<li><a href="about.html" ><i class="fa fa-file-text-o" aria-hidden="true"></i>Order History</a></li>
-					<li><a href="shipping.html" ><i class="fa fa-ship" aria-hidden="true"></i>Shipping</a></li>
-				</ul>	
+
+					<%
+					List<Wishlist> list2 = WishlistDao.getwishlistByCustomerID(c.getID());
+					%>
+					<li><a href="Customer-Wishlist.jsp"><i class="fa fa-heart"
+							aria-hidden="true"></i>Wishlist(<%=list2.size()%>)</a></li>
+					
+					<%
+					List<Cart> list1 = CartDao.getCartByCustomerID(c.getID());
+					%>
+					<li><a href="Customer-Cart.jsp"><i class="fa fa-heart"
+							aria-hidden="true"></i>Cart(<%=list1.size()%>)</a></li>
+							
+					<li><a href="about.html"><i class="fa fa-file-text-o"
+							aria-hidden="true"></i>Order History</a></li>
+					<li><a href="shipping.html"><i class="fa fa-ship"
+							aria-hidden="true"></i>Shipping</a></li>
+				</ul>
 			</div>
 
-				<div class="nav-top">
-					<nav class="navbar navbar-default">
-					
-					<div class="navbar-header nav_2">
-						<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						
+			<div class="nav-top">
+				<nav class="navbar navbar-default">
 
-					</div> 
+					<div class="navbar-header nav_2">
+						<button type="button"
+							class="navbar-toggle collapsed navbar-toggle1"
+							data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+					</div>
 					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 						<ul class="nav navbar-nav ">
-							<li><a href="Index.jsp" class="hyper "><span>Home</span></a></li>	
-							
-							<li class="dropdown active">
-								<a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown" ><span>Profile<b class="caret"></b></span></a>
+							<li><a href="Customer-Home.jsp" class="hyper "><span>Home</span></a></li>
+
+							<li class="dropdown active"><a href="#"
+								class="dropdown-toggle  hyper" data-toggle="dropdown"><span>Profile<b
+										class="caret"></b></span></a>
 								<ul class="dropdown-menu multi">
 									<div class="row">
 										<div class="col-sm-12">
 											<ul class="multi-column-dropdown">
-			
-												<li><a href="Customer-Profile.jsp"><i class="fa fa-angle-right" aria-hidden="true"></i>Update Profile</a></li>
-												<li><a href="Customer-Change-Password.jsp"><i class="fa fa-angle-right" aria-hidden="true"></i>Change Password</a></li>
+
+												<li><a href="Customer-Profile.jsp"><i
+														class="fa fa-angle-right" aria-hidden="true"></i>Update
+														Profile</a></li>
+												<li><a href="Customer-Change-Password.jsp"><i
+														class="fa fa-angle-right" aria-hidden="true"></i>Change
+														Password</a></li>
 											</ul>
 										</div>
 										<div class="clearfix"></div>
-									</div>	
-								</ul>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle hyper" data-toggle="dropdown" ><span>Notifications<b class="caret"></b></span></a>
-								<ul class="dropdown-menu multi multi2">
+									</div>
+								</ul></li>
+							<li class="dropdown"><a href="#"
+								class="dropdown-toggle hyper" data-toggle="dropdown"><span>Notifications<b
+										class="caret"></b></span></a>
+								<ul class="dropdown-menu multi">
 									<div class="row">
 										<div class="col-sm-12">
 											<ul class="multi-column-dropdown">
-												<li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Primary</a></li>
-												<li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Social</a></li>
-												<li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Others</a></li>
+												<li><a href="#"><i class="fa fa-angle-right"
+														aria-hidden="true"></i>Primary</a></li>
+												<li><a href="#"><i class="fa fa-angle-right"
+														aria-hidden="true"></i>Social</a></li>
+												<li><a href="#"><i class="fa fa-angle-right"
+														aria-hidden="true"></i>Others</a></li>
 											</ul>
 										</div>
-									</div>	
-								</ul>
-							</li>
+										<div class="clearfix"></div>
+									</div>
+								</ul></li>
 							<li><a href="#" class="hyper"><span> Gift Cards</span></a></li>
 							<li><a href="#" class="hyper"><span> Coins</span></a></li>
-							<li><a href="contact.html" class="hyper"><span>Contact Us</span></a></li>
-							<li><a href="#" class="hyper"><span> Hello <%=c.getUsername() %></span></a></li>
-							<li><a href="Customer-Logout.jsp" class="hyper"><span> Logout</span></a></li>
+							<li><a href="contact.html" class="hyper"><span>Contact
+										Us</span></a></li>
+							<li><a href="#" class="hyper"><span> Hello <%=c.getUsername()%></span></a></li>
+							<li><a href="Customer-Logout.jsp" class="hyper"><span>
+										Logout</span></a></li>
 						</ul>
 					</div>
-					</nav>
-					 <div class="cart" >
-					
-						<span class="fa fa-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></span>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-					
-		</div>			
-</div>
+				</nav>
+				<div class="clearfix"></div>
+			</div>
+
+		</div>
+	</div>
   <!---->
 
      <!--banner-->
@@ -200,70 +225,85 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		</div>
 <!--footer-->
 <div class="footer">
-	<div class="container">
-		<div class="col-md-3 footer-grid">
-			<h3>About Us</h3>
-			<p>You can Purchase Routine Life Items From Here and Enjoy Your Life Easier.</p>
-		</div>
-		<div class="col-md-3 footer-grid ">
-			<h3>Menu</h3>
-			<ul>
-				<li><a href="Index.jsp">Home</a></li>
-				<li><a href="kitchen.html">Kitchen</a></li>
-				<li><a href="care.html">Personal Care</a></li>
-				<li><a href="hold.html">Household</a></li>						 
-				<li><a href="codes.html">Short Codes</a></li> 
-				<li><a href="contact.html">Contact</a></li>
-			</ul>
-		</div>
-		<div class="col-md-3 footer-grid ">
-			<h3>Customer Services</h3>
-			<ul>
-				<li><a href="shipping.html">Shipping</a></li>
-				<li><a href="terms.html">Terms & Conditions</a></li>
-				<li><a href="faqs.html">Faqs</a></li>
-				<li><a href="contact.html">Contact</a></li>
-				<li><a href="offer.html">Online Shopping</a></li>						 
-				 
-			</ul>
-		</div>
-		<div class="col-md-3 footer-grid">
-			<h3>My Account</h3>
-			<ul>
-				<li><a href="Customer-Login.jsp">Login</a></li>
-				<li><a href="Customer-Registration.jsp">Register</a></li>
-				<li><a href="wishlist.html">Wishlist</a></li>
-				
-			</ul>
-		</div>
-		<div class="clearfix"></div>
+		<div class="container">
+			<div class="col-md-3 footer-grid">
+				<h3>About Us</h3>
+				<p>You can Purchase Routine Life Items From Here and Enjoy Your
+					Life Easier.</p>
+			</div>
+			<div class="col-md-3 footer-grid ">
+				<h3>Menu</h3>
+				<ul>
+					<li><a href="Customer-Home.jsp">Home</a></li>
+					<li><a href="kitchen.html">Kitchen</a></li>
+					<li><a href="care.html">Personal Care</a></li>
+					<li><a href="hold.html">Household</a></li>
+					<li><a href="codes.html">Short Codes</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3 footer-grid ">
+				<h3>Customer Services</h3>
+				<ul>
+					<li><a href="shipping.html">Shipping</a></li>
+					<li><a href="terms.html">Terms & Conditions</a></li>
+					<li><a href="faqs.html">Faqs</a></li>
+					<li><a href="contact.html">Contact</a></li>
+					<li><a href="offer.html">Online Shopping</a></li>
+
+				</ul>
+			</div>
+			<div class="col-md-3 footer-grid">
+				<h3>My Account</h3>
+				<ul>
+					<li><a href="Customer-Login.jsp">Login</a></li>
+					<li><a href="Customer-Registration.jsp">Register</a></li>
+					<li><a href="Customer-Wishlist.jsp">Wishlist</a></li>
+
+				</ul>
+			</div>
+			<div class="clearfix"></div>
 			<div class="footer-bottom">
-				<h2 ><a href="Index.jsp"><b>T<br>H<br>E</b>DK Store<span>The Best Supermarket</span></a></h2><br><br>
+				<h2>
+					<a href="Customer-Home.jsp"><b>T<br>H<br>E
+					</b>DK Store<span>The Best Supermarket</span></a>
+				</h2>
+				<br> <br>
 				<ul class="social-fo">
-					<li><a href="#" class=" face"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-					<li><a href="#" class=" twi"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-					<li><a href="#" class=" pin"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-					<li><a href="#" class=" dri"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+					<li><a href="#" class=" face"><i class="fa fa-facebook"
+							aria-hidden="true"></i></a></li>
+					<li><a href="#" class=" twi"><i class="fa fa-twitter"
+							aria-hidden="true"></i></a></li>
+					<li><a href="#" class=" pin"><i class="fa fa-pinterest-p"
+							aria-hidden="true"></i></a></li>
+					<li><a href="#" class=" dri"><i class="fa fa-dribbble"
+							aria-hidden="true"></i></a></li>
 				</ul>
 				<div class=" address">
 					<div class="col-md-4 fo-grid1">
-							<p><i class="fa fa-home" aria-hidden="true"></i>Somewhere on Earth</p>
+						<p>
+							<i class="fa fa-home" aria-hidden="true"></i>Somewhere on Earth
+						</p>
 					</div>
 					<div class="col-md-4 fo-grid1">
-							<p><i class="fa fa-phone" aria-hidden="true"></i>+91 9624360699</p>	
+						<p>
+							<i class="fa fa-phone" aria-hidden="true"></i>+91 9624360699
+						</p>
 					</div>
 					<div class="col-md-4 fo-grid1">
-						<p><a href="mailto:dkstore0123@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i>dkstore0123@gmail.com</a></p>
+						<p>
+							<a href="mailto:dkstore0123@gmail.com"><i
+								class="fa fa-envelope-o" aria-hidden="true"></i>dkstore0123@gmail.com</a>
+						</p>
 					</div>
 					<div class="clearfix"></div>
-					
-					</div>
+
+				</div>
 			</div>
-		<div class="copy-right">
-			<p> &copy; 2023 DK Store. All Rights Reserved | Design by DK</p>
+			<div class="copy-right">
+				<p>&copy; 2023 DK Store. All Rights Reserved | Design by DK</p>
+			</div>
 		</div>
 	</div>
-</div>
 <!-- //footer-->
 <!-- smooth scrolling -->
 	<script type="text/javascript">

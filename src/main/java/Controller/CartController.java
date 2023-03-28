@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Dao.CartDao;
+import Dao.ProductDao;
 import Model.Cart;
+import Model.Product;
 
 @WebServlet("/CartController")
 public class CartController extends HttpServlet {
@@ -28,11 +31,17 @@ public class CartController extends HttpServlet {
 
 		if (action.equalsIgnoreCase("Add to Cart")) {
 			Cart c = new Cart();
-			
-			
-			
-			
-			
+			c.setCustomerID(Integer.parseInt(request.getParameter("CustomerID")));
+			c.setPID(Integer.parseInt(request.getParameter("PID")));
+
+			Product p = ProductDao.getProductByPID(Integer.parseInt(request.getParameter("PID")));
+			c.setPName(p.getPName());
+			c.setPPrice(p.getPPrice());
+			c.setPQuantity(1);
+			c.setPayment_Status("Pending");
+
+			CartDao.InsertCart(c);
+			response.sendRedirect("Customer-Home.jsp");
 		}
 	}
 
