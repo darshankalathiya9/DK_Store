@@ -137,13 +137,13 @@ function hideURLbar(){ window.scrollTo(0,1); }
 					<%
 					List<Wishlist> list2 = WishlistDao.getwishlistByCustomerID(c.getID());
 					%>
-					<li class=" active"><a href="Customer-Wishlist.jsp"><i class="fa fa-heart"
+					<li><a href="Customer-Wishlist.jsp"><i class="fa fa-heart"
 							aria-hidden="true"></i>Wishlist(<%=list2.size()%>)</a></li>
 					
 					<%
 					List<Cart> list1 = CartDao.getCartByCustomerID(c.getID());
 					%>
-					<li><a href="Customer-Cart.jsp"><i class="fa fa-heart"
+					<li  class=" active"><a href="Customer-Cart.jsp"><i class="fa fa-heart"
 							aria-hidden="true"></i>Cart(<%=list1.size()%>)</a></li>
 							
 					<li><a href="about.html"><i class="fa fa-file-text-o"
@@ -226,9 +226,9 @@ function hideURLbar(){ window.scrollTo(0,1); }
 	<!--banner-->
 	<div class="banner-top">
 		<div class="container">
-			<h3>Wishlist</h3>
+			<h3>Cart</h3>
 			<h4>
-				<a href="Index.jsp">Home</a><label>/</label>Wishlist
+				<a href="Index.jsp">Home</a><label>/</label>Cart
 			</h4>
 			<div class="clearfix"></div>
 		</div>
@@ -238,7 +238,7 @@ function hideURLbar(){ window.scrollTo(0,1); }
 	<div class="check-out">
 		<div class="container">
 			<div class="spec ">
-				<h3>Wishlist</h3>
+				<h3>Cart</h3>
 				<div class="ser-t">
 					<b></b> <span><i></i></span> <b class="line"></b>
 				</div>
@@ -275,20 +275,18 @@ function hideURLbar(){ window.scrollTo(0,1); }
 					<th class="t-head head-it text-center">Products</th>
 					<th class="t-head text-center">Price</th>
 					<th class="t-head text-center">Remove</th>
+					<th class="t-head text-center">Quantity</th>
+					<th class="t-head text-center">Total</th>
 					<th class="t-head text-center">Purchase</th>
 				</tr>
 
 
-				<%
-				List<Wishlist> list = WishlistDao.getwishlistByCustomerID(c.getID());
-				%>
-				<%
-				for (Wishlist w : list) {
-				%>
+				<% List<Cart> list = CartDao.getCartByCustomerID(c.getID());%>
+				<% int Net_Price = 0; %>
+				<% for (Cart c1 : list) { %>
 
-				<%
-				Product p = ProductDao.getProductByPID(w.getPID());
-				%>
+				<% Product p = ProductDao.getProductByPID(c1.getPID()); %>
+				<%Net_Price = Net_Price + c1.getTotalPrice();%>
 				<tr class="cross">
 					<td class="ring-in t-data"><a href="single.html" class="at-in">
 							<img src="Image/<%=p.getImage()%>" class="img-responsive"
@@ -300,27 +298,37 @@ function hideURLbar(){ window.scrollTo(0,1); }
 							</h5>
 						</div>
 						<div class="clearfix"></div></td>
-					<td class="t-data"><%=p.getPPrice()%></td>
+					<td class="t-data"><%=c1.getPPrice()%></td>
 					<td class="t-data">
-							<a href="RemoveFromWishlist.jsp?WID=<%=w.getWID()%>">Remove
-							<!-- <button	class="btn btn-danger my-cart-btn my-cart-b">Remove</button> -->
-							</a>
+							<a href="RemoveFromCart.jsp?WID=<%=c1.getCID()%>">Remove</a>
+							<!-- <button class="btn btn-danger my-cart-btn my-cart-b">Remove</button> -->
 					</td>
+					
 					<td class="t-data">
-						<form action="CartController" method="get">
-							<input type="hidden" name="PID" value=<%=p.getPID()%>> <input
-								type="hidden" name="CustomerID" value=<%=c.getID()%>>
-							<button class="btn btn-danger my-cart-btn my-cart-b"
-								name="action" value="Add to Cart">Add to Cart</button>
+						<form action="CartController" method="post">
+							<input type="hidden" name="CID" value=<%=c1.getCID()%>> 
+							<input type="number" min="1" max="10" value="<%=c1.getPQuantity()%>" name="PQuantity" onchange="this.form.submit();" >
+						</form>
+					</td>
+					<td class="t-data"><%=c1.getTotalPrice() %></td>
+					<td class="t-data">
+						<form action="#" method="post">
+							<input type="hidden" name="PID" value=<%=p.getPID()%>> 
+							<input type="hidden" name="CustomerID" value=<%=c.getID()%>>
+							<button class="btn btn-danger my-cart-btn my-cart-b" name="action" value="Buy Now">Buy Now</button>
 						</form>
 					</td>
 
 				</tr>
-				<%
-				}
-				%>
-
+				<% } %>
 			</table>
+			<br><br>
+			<div class="spec ">
+				<h3>Total Net Price : <%=Net_Price%></h3>
+				<div class="ser-t">
+					<b></b> <span><i></i></span> <b class="line"></b>
+				</div>
+			</div>
 		</div>
 	</div>
 

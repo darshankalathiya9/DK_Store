@@ -134,7 +134,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					</div>
 					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 						<ul class="nav navbar-nav ">
-							<li class=" active"><a href="Customer-Home.jsp" class="hyper "><span>Home</span></a></li>
+							<li><a href="Customer-Home.jsp" class="hyper "><span>Home</span></a></li>
 
 							<li class="dropdown "><a href="#"
 								class="dropdown-toggle  hyper" data-toggle="dropdown"><span>Profile<b
@@ -173,7 +173,6 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 										<div class="clearfix"></div>
 									</div>
 								</ul></li>
-								</ul></li>
 							<li><a href="#" class="hyper"><span> Gift Cards</span></a></li>
 							<li><a href="#" class="hyper"><span> Coins</span></a></li>
 							<li><a href="contact.html" class="hyper"><span>Contact
@@ -186,6 +185,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				</nav>
 				<div class="clearfix"></div>
 			</div>
+
 		</div>
 	</div>
 	<!---->
@@ -268,7 +268,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 						</div> -->
 						
 						<div class="add add-3">
-						<form action="CartController" method="post">
+						<form action="CartController" method="get">
 							<input type="hidden" name="PID" value=<%=p.getPID() %>>
 							<input type="hidden" name="CustomerID" value=<%=c.getID() %>>
 							<button class="btn btn-danger my-cart-btn my-cart-b" name="action" value="Add to Cart">Add To Cart</button>
