@@ -996,7 +996,10 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				<li><a href="Customer-Login.jsp">Login</a></li>
 				<li><a href="Customer-Registration.jsp">Register</a></li>
 				<li><a href="wishlist.html">Wishlist</a></li>
-				
+			</ul><br><br>
+			<h3>Admin</h3>
+			<ul>
+				<li><a href="Admin-Login.jsp">Admin-Login</a></li>
 			</ul>
 		</div>
 		<div class="clearfix"></div>
