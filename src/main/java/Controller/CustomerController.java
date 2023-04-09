@@ -29,7 +29,7 @@ public class CustomerController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
-		
+
 		if (action.equalsIgnoreCase("Register")) {
 			Customer c = new Customer();
 			c.setUsername(request.getParameter("Username"));
@@ -38,17 +38,17 @@ public class CustomerController extends HttpServlet {
 			c.setEmail(request.getParameter("Email"));
 			c.setPassword(request.getParameter("Password"));
 			CustomerDao.insertCustomer(c);
-			
+
 			request.setAttribute("msg", "Account Registered Succesfully.");
 			request.getRequestDispatcher("Customer-Login.jsp").forward(request, response);
 		}
-		
+
 		else if (action.equalsIgnoreCase("Login")) {
 			Customer c = new Customer();
 			c.setEmail(request.getParameter("Email"));
 			c.setPassword(request.getParameter("Password"));
 			Customer c1 = CustomerDao.loginCustomer(c);
-			
+
 			if (c1 == null) {
 				request.setAttribute("msg", "Password is Incorrect.");
 				request.getRequestDispatcher("Customer-Login.jsp").forward(request, response);
@@ -58,7 +58,7 @@ public class CustomerController extends HttpServlet {
 				request.getRequestDispatcher("Customer-Home.jsp").forward(request, response);
 			}
 		}
-		
+
 		else if (action.equalsIgnoreCase("Update")) {
 			Customer c = new Customer();
 			c.setID(Integer.parseInt(request.getParameter("ID")));
@@ -66,13 +66,14 @@ public class CustomerController extends HttpServlet {
 			c.setContact(Long.parseLong(request.getParameter("Contact")));
 			c.setCity(request.getParameter("City"));
 			c.setEmail(request.getParameter("Email"));
-			
+
 			CustomerDao.updateProfile(c);
+			System.out.println("Customer Profile Upodated By Customer Succesfully.");
 			HttpSession session = request.getSession();
 			session.setAttribute("data", c);
 			request.getRequestDispatcher("Customer-Home.jsp").forward(request, response);
 		}
-		
+
 		else if (action.equalsIgnoreCase("Change Password")) {
 			Customer c = new Customer();
 			int ID = Integer.parseInt(request.getParameter("ID"));
@@ -95,7 +96,7 @@ public class CustomerController extends HttpServlet {
 				request.getRequestDispatcher("Customer-Change-Password.jsp").forward(request, response);
 			}
 		}
-		
+
 		else if (action.equalsIgnoreCase("GET OTP")) {
 			String Email = request.getParameter("Email");
 			boolean flag = CustomerDao.checkEmail(Email);
@@ -113,7 +114,7 @@ public class CustomerController extends HttpServlet {
 
 			}
 		}
-		
+
 		else if (action.equalsIgnoreCase("Verify")) {
 			String Email = request.getParameter("Email");
 			int OTP1 = Integer.parseInt(request.getParameter("OTP1"));
@@ -129,7 +130,7 @@ public class CustomerController extends HttpServlet {
 				request.getRequestDispatcher("Customer-Verify-OTP.jsp").forward(request, response);
 			}
 		}
-		
+
 		else if (action.equalsIgnoreCase("Update Password")) {
 			String Email = request.getParameter("Email");
 			String NP = request.getParameter("NP");
@@ -144,5 +145,19 @@ public class CustomerController extends HttpServlet {
 				request.getRequestDispatcher("Customer-New-Password.jsp").forward(request, response);
 			}
 		}
+
+		else if (action.equalsIgnoreCase("Admin Update")) {
+			Customer c = new Customer();
+			c.setID(Integer.parseInt(request.getParameter("ID")));
+			c.setUsername(request.getParameter("Username"));
+			c.setContact(Long.parseLong(request.getParameter("Contact")));
+			c.setCity(request.getParameter("City"));
+			c.setEmail(request.getParameter("Email"));
+
+			CustomerDao.updateProfile(c);
+			System.out.println("Customer Profile Upodated By Admin Succesfully.");
+			response.sendRedirect("Admin-Customer-List.jsp");
+		}
+
 	}
 }

@@ -70,6 +70,7 @@ public class SellerController extends HttpServlet {
 			s.setEmail(request.getParameter("Email"));
 			
 			SellerDao.updateProfile(s);
+			System.out.println("Seller Profile Upodated By Seller Succesfully.");
 			HttpSession session = request.getSession();
 			session.setAttribute("data", s);
 			request.getRequestDispatcher("Seller-Home.jsp").forward(request, response);
@@ -146,5 +147,19 @@ public class SellerController extends HttpServlet {
 				request.getRequestDispatcher("Seller-New-Password.jsp").forward(request, response);
 			}
 		}
+		
+		else if (action.equalsIgnoreCase("Admin Update")) {
+			Seller s = new Seller();
+			s.setID(Integer.parseInt(request.getParameter("ID")));
+			s.setUsername(request.getParameter("Username"));
+			s.setContact(Long.parseLong(request.getParameter("Contact")));
+			s.setCity(request.getParameter("City"));
+			s.setEmail(request.getParameter("Email"));
+			
+			SellerDao.updateProfile(s);
+			System.out.println("Seller Profile Upodated By Admin Succesfully.");
+			response.sendRedirect("Admin-Seller-List.jsp");
+		}
+		
 	}
 }

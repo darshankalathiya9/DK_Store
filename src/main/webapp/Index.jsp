@@ -246,9 +246,6 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 						</ul>
 					</div>
 					</nav>
-					 <div class="cart" >
-						<span class="fa fa-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></span>
-					</div>
 					<div class="clearfix"></div>
 				</div>
 		</div>			

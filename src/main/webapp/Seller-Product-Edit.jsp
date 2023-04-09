@@ -1,6 +1,5 @@
 <%@page import="Dao.ProductDao"%>
 <%@page import="Model.Product"%>
-<%@page import="java.util.List"%>
 <%@page import="Model.Seller"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -76,6 +75,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		response.sendRedirect("Seller-Login.jsp");
 	}
 %>
+
 <a href="offer.html"><img src="images/download.png" class="img-head" alt=""></a>
 <div class="header">
 
@@ -104,6 +104,8 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
+						
+
 					</div> 
 					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 						<ul class="nav navbar-nav ">
@@ -172,6 +174,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					</div>
 					</nav>
 					 <div class="cart" >
+					
 						<span class="fa fa-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></span>
 					</div>
 					<div class="clearfix"></div>
@@ -181,65 +184,63 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 </div>
   <!---->
 
-<div data-vide-bg="video/video">
-    <div class="container">
-		<div class="banner-info">
-			<h3>It is a long established fact that a reader will be distracted by 
-			the readable </h3>	
-			<div class="search-form">
-				<form action="#" method="post">
-					<input type="text" placeholder="Search..." name="Search...">
-					<input type="submit" value=" " >
-				</form>
-			</div>		
-		</div>	
-    </div>
-</div>
-
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
-    <script src="js/jquery.vide.min.js"></script>
-
-<!--content-->
-<div class="content-top ">
-	<div class="container ">
-		<div class="spec ">
-			<h3>Your Products</h3>
-			<div class="ser-t">
-				<b></b>
-				<span><i></i></span>
-				<b class="line"></b>
-			</div>
-		</div>
-		
-			<table class="table text-center">
-				<tr>
-					<th class="t-head text-center">Product Image</th>
-					<th class="t-head text-center">Product Name</th>
-					<th class="t-head text-center">Product Price</th>
-					<th class="t-head text-center">Edit</th>
-					<th class="t-head text-center">Delete</th>
-				</tr>
-			
-			<%List<Product> list = ProductDao.getProductSID(s.getID()); %>
-			<%for(Product p : list) {%>
-
-				<tr class="cross">
-					<td class="t-data text-center">
-							<img src="Image/<%=p.getImage()%>" height="150px" width="150px" alt="">
-						<div class="clearfix"></div></td>
-					<td class="t-data"><%=p.getPName() %></td>
-					<td class="t-data"><%=p.getPPrice() %></td>
-					<td class="t-data text-primary"><a href="Seller-Product-Edit.jsp?PID=<%=p.getPID()%>">Edit</a></td>
-					<td class="t-data text-danger"><a href="Seller-Product-Delete.jsp?PID=<%=p.getPID()%>">Delete</a></td>
-				</tr>
-				<% } %>
-			</table>
-			
-			<div class="clearfix"></div>
+     <!--banner-->
+<div class="banner-top">
+	<div class="container">
+		<h3>Seller Update Product</h3>
+		<div class="clearfix"> </div>
 	</div>
 </div>
 
-<br><br><br>
+<!--login-->
+
+	<div class="login">
+		<div class="main-agileits">
+				<div class="form-w3agile form1">
+				
+				<% int ID = Integer.parseInt(request.getParameter("PID")); %>
+				<% Product p = ProductDao.getProductByPID(ID); %>
+				
+					<form action="ProductController" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="PID" value="<%=p.getPID()%>">
+						<label>Upload Product Image</label>
+						<div class="key">
+							<br>
+							<i class="fa fa-file" aria-hidden="true"></i>
+							<input  type="file" name="Image">
+							<div class="clearfix"></div>
+						</div>
+						<label>Enter Product Name</label>
+						<div class="key">
+							<i class="fa fa-font" aria-hidden="true"></i>
+							<input  type="text" value="<%=p.getPName() %>" name="PName" required="">
+							<div class="clearfix"></div>
+						</div>
+						<label>Enter Product Price</label>
+						<div class="key">
+							<i class="fa fa-inr" aria-hidden="true"></i>
+							<input  type="text" value="<%=p.getPPrice() %>" name="PPrice" required="">
+							<div class="clearfix"></div>
+						</div>
+						<label>Enter Product Category</label>
+						<div class="key">
+							<i class="fa fa-font" aria-hidden="true"></i>
+							<input  type="text" value="<%=p.getPCategory() %>y" name="PCategory" required="">
+							<div class="clearfix"></div>
+						</div>
+						<label>Enter Product Description</label>
+						<div class="key">
+							<i class="fa fa-font" aria-hidden="true"></i>
+							<input  type="text" value="<%=p.getPDesc() %>" name="PDesc" required="">
+							<div class="clearfix"></div>
+						</div>
+						<div class="text-center">
+							<input type="submit" value="Update" name="action">	
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 <!--footer-->
 <div class="footer">
 	<div class="container">

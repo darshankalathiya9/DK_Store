@@ -1,3 +1,10 @@
+<%@page import="Dao.ProductDao"%>
+<%@page import="Model.Product"%>
+<%@page import="Dao.CustomerDao"%>
+<%@page import="Model.Customer"%>
+<%@page import="Model.Seller"%>
+<%@page import="java.util.List"%>
+<%@page import="Dao.SellerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
@@ -51,50 +58,22 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					<div class="scrollbar scrollbar1">
 						<ul class="nav" id="side-menu">
 							<li>
-								<a href="index.html" class="active"><i class="fa fa-home nav_icon"></i>Dashboard</a>
+								<a href="Admin-Home.jsp" class="active"><i class="fa fa-home nav_icon"></i>Dashboard</a>
 							</li>
 							<li>
-								<a href="#"><i class="fa fa-cogs nav_icon"></i>Components <span class="fa arrow"></span></a>
-								<ul class="nav nav-second-level collapse">
-									<li>
-										<a href="progressbar.html">Progressbar</a>
-									</li>
-									<li>
-										<a href="grid.html">Grid</a>
-									</li>
-								</ul>
-								<!-- /nav-second-level -->
+								<a href="Admin-Seller-List.jsp"><i class="fa fa-users nav_icon"></i>Sellers</a>
 							</li>
 							<li>
-								<a href="#"><i class="fa fa-book nav_icon"></i>Elements <span class="fa arrow"></span></a>
-								<ul class="nav nav-second-level collapse">
-									<li>
-										<a href="buttons.html">Buttons</a>
-									</li>
-									<li>
-										<a href="typography.html">Typography</a>
-									</li>
-								</ul>
-								<!-- /nav-second-level -->
+								<a href="Admin-Customer-List.jsp"><i class="fa fa-users nav_icon"></i>Customers</a>
 							</li>
 							<li>
-								<a href="widgets.html"><i class="fa fa-th-large nav_icon"></i>Widgets</a>
-							</li>
-							
-							<li>
-								<a href="#"><i class="fa fa-check-square-o nav_icon"></i>Forms<span class="fa arrow"></span></a>
-								<ul class="nav nav-second-level collapse">
-									<li>
-										<a href="inputs.html">Inputs</a>
-									</li>
-									<li>
-										<a href="validation.html">Form Validation</a>
-									</li>
-								</ul>
-								<!-- //nav-second-level -->
+								<a href="Admin-Product-List.jsp"><i class="fa fa-shopping-cart nav_icon"></i>Products</a>
 							</li>
 							<li>
-								<a href="#"><i class="fa fa-envelope nav_icon"></i>Mailbox<span class="fa arrow"></span></a>
+								<a href="Admin-Total-Payment-List.jsp"><i class="fa fa-inr nav_icon"></i>Payments</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-envelope nav_icon"></i>Mailbox</a>
 								<ul class="nav nav-second-level collapse">
 									<li>
 										<a href="inbox.html">Inbox</a>
@@ -103,40 +82,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<a href="compose.html">Compose email</a>
 									</li>
 								</ul>
-								<!-- //nav-second-level -->
-							</li>
-							<li>
-								<a href="maps.html"><i class="fa fa-location-arrow nav_icon"></i>Maps</a>
-							</li>
-							<li>
-								<a href="#"><i class="fa fa-file-text-o nav_icon"></i>Pages<span class="fa arrow"></span></a>
-								<ul class="nav nav-second-level collapse">
-									<li>
-										<a href="login.html">Login</a>
-									</li>
-									<li>
-										<a href="signup.html">SignUp</a>
-									</li>
-									<li>
-										<a href="blank-page.html">Blank Page</a>
-									</li>
-								</ul>
-								<!-- //nav-second-level -->
-							</li>
-							<li>
-								<a href="charts.html" class="chart-nav"><i class="fa fa-bar-chart nav_icon"></i>Charts</a>
-							</li>
-							<li>
-								<a href="#" class="chart-nav"><i class="fa fa-list-ul nav_icon"></i>Extras<span class="fa arrow"></span></a>
-								<ul class="nav nav-second-level collapse">
-									<li>
-										<a href="tables.html">Tables</a>
-									</li>
-									<li>
-										<a href="404.html">404 Page</a>
-									</li>
-								</ul>
-								<!-- //nav-second-level -->
 							</li>
 						</ul>
 					</div>
@@ -150,9 +95,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			<div class="header-left">
 				<!--logo -->
 				<div class="logo">
-					<a href="index.html">
+					<a href="Admin-Home.jsp">
 						<ul>	
-							<li><img src="Admin/images/logo1.png" alt="" /></li>
+							<li><img src="https://i.pinimg.com/600x315/d3/b0/ec/d3b0ec40a8046297bf67fdba2450c78f.jpg" height="50px" width="50px" alt="" /></li>
 							<li><h1>DK Store</h1></li>
 							<div class="clearfix"> </div>
 						</ul>
@@ -314,14 +259,14 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						<li class="dropdown profile_details_drop">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 								<div class="profile_img">	
-									<span class="prfil-img"><img src="Admin/images/a.png" alt=""> </span> 
+									<span class="prfil-img"><img src="https://i.pinimg.com/600x315/d3/b0/ec/d3b0ec40a8046297bf67fdba2450c78f.jpg" height="50px" width="50px" alt=""> </span> 
 									<div class="clearfix"></div>	
 								</div>	
 							</a>
 							<ul class="dropdown-menu drp-mnu">
+								<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>
 								<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
-								<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li> 
-								<li> <a href="#"><i class="fa fa-sign-out"></i> Logout</a> </li>
+								<li> <a href="Admin-Logout.jsp"><i class="fa fa-sign-out"></i> Logout</a> </li>
 							</ul>
 						</li>
 					</ul>
@@ -344,12 +289,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						<div class="tickets">
 							<div class="grid-left">
 								<div class="book-icon">
-									<i class="fa fa-book"></i>
+									<i class="fa fa-user"></i>
 								</div>
 							</div>
 							<div class="grid-right">
-								<h3>Tickets <span>Answered</span></h3>
-								<p>452</p>
+								<h3>Visitors</h3>
+								<p>999</p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -358,12 +303,28 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						<div class="tickets">
 							<div class="grid-left">
 								<div class="book-icon">
-									<i class="fa fa-rocket"></i>
+									<i class="fa fa-book"></i>
 								</div>
 							</div>
 							<div class="grid-right">
-								<h3>New <span>Projects</span></h3>
-								<p>745</p>
+								<h3>Sellers</h3>
+								<% List<Seller> list = SellerDao.getAllSellers(); %>
+								<p><%out.print(list.size()); %></p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+					<div class="col-md-3 ticket-grid">
+						<div class="tickets">
+							<div class="grid-left">
+								<div class="book-icon">
+									<i class="fa fa-book"></i>
+								</div>
+							</div>
+							<div class="grid-right">
+								<h3>Customers</h3>
+								<% List<Customer> list1 = CustomerDao.getAllCustomers(); %>
+								<p><%out.print(list1.size()); %></p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -376,22 +337,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								</div>
 							</div>
 							<div class="grid-right">
-								<h3>Our <span>Status</span></h3>
-								<p>125</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-					<div class="col-md-3 ticket-grid">
-						<div class="tickets">
-							<div class="grid-left">
-								<div class="book-icon">
-									<i class="fa fa-user"></i>
-								</div>
-							</div>
-							<div class="grid-right">
-								<h3>Daily <span>Visitors</span></h3>
-								<p>7462</p>
+								<h3>Products</h3>
+								<% List<Product> list2 = ProductDao.getAllProduct(); %>
+								<p><%out.print(list2.size()); %></p>
 							</div>
 							<div class="clearfix"> </div>
 						</div>

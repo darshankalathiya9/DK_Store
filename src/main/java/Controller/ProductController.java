@@ -15,7 +15,7 @@ import Model.Product;
 
 @WebServlet("/ProductController")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 512, maxFileSize = 1024 * 1024 * 512, maxRequestSize = 1024 * 1024
-* 512)
+		* 512)
 public class ProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class ProductController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 	}
-	
+
 	private String extractfilename(Part file) {
 		String cd = file.getHeader("content-disposition");
 		System.out.println(cd);
@@ -44,7 +44,7 @@ public class ProductController extends HttpServlet {
 
 		String action = request.getParameter("action");
 		System.out.println(action);
-		
+
 		if (action.equalsIgnoreCase("Upload")) {
 			String savePath = "G:\\JAVA_BackEnd\\DK_Store\\src\\main\\webapp\\Image";
 			File fileSaveDir = new File(savePath);
@@ -72,10 +72,43 @@ public class ProductController extends HttpServlet {
 			p.setPCategory(request.getParameter("PCategory"));
 			p.setPDesc(request.getParameter("PDesc"));
 			System.out.println(p);
-			
+
 			ProductDao.uploadProduct(p);
 			System.out.println("Product Uploaded succesfully.");
 			response.sendRedirect("Seller-Home.jsp");
+		}
+
+		if (action.equalsIgnoreCase("Update")) {
+			String savePath = "G:\\JAVA_BackEnd\\DK_Store\\src\\main\\webapp\\Image";
+			File fileSaveDir = new File(savePath);
+			if (!fileSaveDir.exists()) {
+				fileSaveDir.mkdir();
+			}
+
+			Part file1 = request.getPart("Image");
+			String fileName = extractfilename(file1);
+			file1.write(savePath + File.separator + fileName);
+			String filePath = savePath + File.separator + fileName;
+
+			String savePath2 = "G:\\JAVA_BackEnd\\DK_Store\\src\\main\\webapp\\Image";
+			File imgSaveDir = new File(savePath2);
+
+			if (!imgSaveDir.exists()) {
+				imgSaveDir.mkdir();
+			}
+
+			Product p = new Product();
+			p.setPID(Integer.parseInt(request.getParameter("PID")));
+			p.setImage(fileName);
+			p.setPName(request.getParameter("PName"));
+			p.setPPrice(Integer.parseInt(request.getParameter("PPrice")));
+			p.setPCategory(request.getParameter("PCategory"));
+			p.setPDesc(request.getParameter("PDesc"));
+			System.out.println(p);
+
+			ProductDao.updateProduct(p);
+			System.out.println("Product Updated Succesfully.");
+			response.sendRedirect("Seller-Manage-Product.jsp");
 		}
 	}
 }

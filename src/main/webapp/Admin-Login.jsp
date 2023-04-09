@@ -43,24 +43,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				<form action="AdminController" method="post">
 					<input type="text" class="user" name="Email" placeholder="Email" required="">
 					<input type="password" name="Password" class="lock" placeholder="Password">
-					<div class="forgot-top-grids">
-						<div class="forgot-grid">
-							<ul>
-								<li>
-									<input type="checkbox" id="brand1" value="">
-									<label for="brand1"><span></span>Remember me</label>
-								</li>
-							</ul>
-						</div>
-						<div class="forgot">
-							<a href="#">Forgot password?</a>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
 					<input type="submit" name="action" value="Login">
-					<div class="signup-text">
-						<a href="#">Don't have an account? Create one now</a>
-					</div>
 					<hr>
 					<h2>or login with</h2>
 					<div class="login-icons">
