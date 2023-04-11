@@ -272,6 +272,12 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<div class="main-agileits">
 				<div class="form-w3agile form1">
 					<h3>Register</h3>
+					<h4 class="text-center">
+						<%String msg = (String)request.getAttribute("msg"); %>
+						<%if(msg!= null){ %>
+						<%out.print(msg); %>
+						<%} %>
+					</h4><br><br>
 					<form action="CustomerController" method="post">
 						<div class="key">
 							<i class="fa fa-user" aria-hidden="true"></i>

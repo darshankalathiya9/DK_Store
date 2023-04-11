@@ -33,16 +33,26 @@ public class SellerController extends HttpServlet {
 		String action = request.getParameter("action");
 
 		if (action.equalsIgnoreCase("Register")) {
-			Seller s = new Seller();
-			s.setUsername(request.getParameter("Username"));
-			s.setContact(Long.parseLong(request.getParameter("Contact")));
-			s.setCity(request.getParameter("City"));
-			s.setEmail(request.getParameter("Email"));
-			s.setPassword(request.getParameter("Password"));
-			SellerDao.insertSeller(s);
 
-			request.setAttribute("msg", "Account Registered Succesfully.");
-			request.getRequestDispatcher("Seller-Login.jsp").forward(request, response);
+			String Email = request.getParameter("Email");
+			Seller s = SellerDao.checkEmailforRegistrtion(Email);
+
+			if (Email.equals(s.getEmail())) {
+				request.setAttribute("msg", "Account Already Exist with This Email.");
+				request.getRequestDispatcher("Seller-Registration.jsp").forward(request, response);
+			} 
+			else {
+				Seller s1 = new Seller();
+				s1.setUsername(request.getParameter("Username"));
+				s1.setContact(Long.parseLong(request.getParameter("Contact")));
+				s1.setCity(request.getParameter("City"));
+				s1.setEmail(request.getParameter("Email"));
+				s1.setPassword(request.getParameter("Password"));
+
+				SellerDao.insertSeller(s1);
+				request.setAttribute("msg", "Account Registered Succesfully.");
+				request.getRequestDispatcher("Seller-Login.jsp").forward(request, response);
+			}
 		}
 
 		else if (action.equalsIgnoreCase("Login")) {
@@ -68,7 +78,7 @@ public class SellerController extends HttpServlet {
 			s.setContact(Long.parseLong(request.getParameter("Contact")));
 			s.setCity(request.getParameter("City"));
 			s.setEmail(request.getParameter("Email"));
-			
+
 			SellerDao.updateProfile(s);
 			System.out.println("Seller Profile Upodated By Seller Succesfully.");
 			HttpSession session = request.getSession();
@@ -147,7 +157,7 @@ public class SellerController extends HttpServlet {
 				request.getRequestDispatcher("Seller-New-Password.jsp").forward(request, response);
 			}
 		}
-		
+
 		else if (action.equalsIgnoreCase("Admin Update")) {
 			Seller s = new Seller();
 			s.setID(Integer.parseInt(request.getParameter("ID")));
@@ -155,11 +165,11 @@ public class SellerController extends HttpServlet {
 			s.setContact(Long.parseLong(request.getParameter("Contact")));
 			s.setCity(request.getParameter("City"));
 			s.setEmail(request.getParameter("Email"));
-			
+
 			SellerDao.updateProfile(s);
 			System.out.println("Seller Profile Upodated By Admin Succesfully.");
 			response.sendRedirect("Admin-Seller-List.jsp");
 		}
-		
+
 	}
 }
